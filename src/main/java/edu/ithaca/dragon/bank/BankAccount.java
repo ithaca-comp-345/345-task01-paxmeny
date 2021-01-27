@@ -42,7 +42,7 @@ public class BankAccount {
      * Returns true if all characters in str are found in charSet, false otherwise
      * @param str String to verify
      * @param charSet Character set to verify against
-     * @return True if all characters in str are found in charSet, false otherwise
+     * @return True if valid str, false otherwise
      */
     private static boolean isStringValid(String str, String charSet) {
         String s;
@@ -59,7 +59,7 @@ public class BankAccount {
      * Returns true if str has consecutive c's, false otherwise
      * @param str String to check for consecutive chars
      * @param c Char to check
-     * @return True if str has consecutive c's, false otherwise
+     * @return True if consecutive c's, false otherwise
      */
     private static boolean hasConsecutive(String str, char c) {
         String s = "" + c + c;
@@ -67,9 +67,17 @@ public class BankAccount {
     }
 
     /**
-     * 
+     * Returns true if:
+     * only chars in prefix are (a-z), (0-9), '_', '.' and '-'
+     * only chars in domain are (a-z), (0-9), and '-'
+     * only chars in topLevelDomain are (a-z)
+     * no leading or trailing '_', '.', '-' in the prefix
+     * no leading or trailing '-' in the domain
+     * no topLevelDomain with length < 2
+     * no consecutive speical characters,
+     * flase otherwise
      * @param email Address to verify
-     * @return true if valid email, false otherwise
+     * @return True if valid email, false otherwise
      */
     public static boolean isEmailValid(String email) {
         // allowed character sets
