@@ -39,12 +39,12 @@ public class BankAccount {
     }
 
     /**
-     * Returns true if all characters in str are found in charSet, false otherwise
+     * Returns true if all chars in str are found in charSet, false otherwise
      * @param str String to verify
      * @param charSet Character set to verify against
-     * @return True if valid str, false otherwise
+     * @return True if str only contains chars in charSet, false otherwise
      */
-    private static boolean isStringValid(String str, String charSet) {
+    private static boolean isBuiltFrom(String str, String charSet) {
         String s;
         for (char c : str.toCharArray()) {
             s = "" + c;
@@ -94,11 +94,13 @@ public class BankAccount {
         domain = email.substring(prefixIndex + 1, domainIndex);
         topLevelDomain = email.substring(domainIndex + 1);
 
-        if (!isStringValid(prefix, alpha + digit + special)) {  // if any char in prefix is not (a-z), (0-9), '_', '.' or '-' return false
+        if (prefixIndex == -1 || domainIndex == -1) {  // if @ or . is missing return false
             return false;
-        } else if (!isStringValid(domain, alpha + digit + "-")) {  // if any char in domain is not (a-z), (0-9), or '-' return false
+        } else if (!isBuiltFrom(prefix, alpha + digit + special)) {  // if any char in prefix is not (a-z), (0-9), '_', '.' or '-' return false
             return false;
-        } else if (!isStringValid(topLevelDomain, alpha)) {  // if any char in topLevelDomain is not (a-z) return false
+        } else if (!isBuiltFrom(domain, alpha + digit + "-")) {  // if any char in domain is not (a-z), (0-9), or '-' return false
+            return false;
+        } else if (!isBuiltFrom(topLevelDomain, alpha)) {  // if any char in topLevelDomain is not (a-z) return false
             return false;
         } else if (special.contains("" + email.charAt(0))) {  // if prefix leading special char return false
             return false;
