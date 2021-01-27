@@ -47,11 +47,11 @@ public class BankAccount {
         else if(email.isEmpty()){
             return false;
         }
-        //Make sure '@' is not at first index. First index invalid is equiv class with boundry as index 0(inclusive)
+        //Make sure '@' is not at first index. First index invalid is equiv class with boundry as index 0(non-inclusive)
         else if (email.indexOf('@') == 0){
             return false;
         }
-        //Make sure '@' isn't at last index. Last index invalid is equiv class with boundry (noninclusive) -1
+        //Make sure '@' isn't at last index. Last index invalid is equiv class with boundry (non-inclusive) -1
         else if (email.indexOf('@') == email.length()-1){
             return false;
         }
