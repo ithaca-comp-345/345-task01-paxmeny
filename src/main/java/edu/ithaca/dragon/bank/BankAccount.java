@@ -89,12 +89,16 @@ public class BankAccount {
         int prefixIndex = email.indexOf('@');
         int domainIndex = email.lastIndexOf('.');
 
+        if (prefixIndex == -1 || domainIndex == -1) {  // if @ or . is missing return false
+            return false;
+        } 
+
         String prefix, domain, topLevelDomain;
         prefix = email.substring(0, prefixIndex);
         domain = email.substring(prefixIndex + 1, domainIndex);
         topLevelDomain = email.substring(domainIndex + 1);
 
-        if (prefixIndex == -1 || domainIndex == -1) {  // if @ or . is missing return false
+        if (prefix.length() == 0 || domain.length() == 0 || topLevelDomain.length() < 2) {  // if prefix or domain length == 0, or topLevelDomain < 2
             return false;
         } else if (!isBuiltFrom(prefix, alpha + digit + special)) {  // if any char in prefix is not (a-z), (0-9), '_', '.' or '-' return false
             return false;
@@ -102,15 +106,13 @@ public class BankAccount {
             return false;
         } else if (!isBuiltFrom(topLevelDomain, alpha)) {  // if any char in topLevelDomain is not (a-z) return false
             return false;
-        } else if (special.contains("" + email.charAt(0))) {  // if prefix leading special char return false
+        } else if (special.contains("" + prefix.charAt(0))) {  // if prefix leading special char return false
             return false;
         } else if (special.contains("" + email.charAt(prefixIndex - 1))) {  // if prefix trailing special char return false
             return false;
-        } else if (special.contains("" + email.charAt(0))) {  // if domain leading special char return false
+        } else if (special.contains("" + domain.charAt(0))) {  // if domain leading special char return false
             return false;
         } else if (special.contains("" + email.charAt(domainIndex - 1))) {  // if domain trailing special char return false
-            return false;
-        } else if (topLevelDomain.length() < 2) {  // if topLevelDomain has < 2 char return false
             return false;
         }
 
