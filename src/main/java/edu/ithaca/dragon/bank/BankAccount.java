@@ -44,6 +44,9 @@ public class BankAccount {
         if (email.indexOf('@') == -1){
             return false;
         }
+        else if(email.isEmpty()){
+            return false;
+        }
         //Make sure '@' is not at first index. First index invalid is equiv class. 
         else if (email.indexOf('@') == 0){
             return false;
