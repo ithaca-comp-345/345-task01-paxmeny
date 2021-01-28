@@ -40,14 +40,21 @@ class BankAccountTest {
         assertFalse( BankAccount.isEmailValid("email.mail@com"));
 
         // empty case w/ @ and . - boundry case
+        assertFalse( BankAccount.isEmailValid("@.")) //middle and both sides boundry
         // empty case w/o @ and w/ . - boundry case
+        assertFalse( BankAccount.isEmailValid("email.com")) //Left-middle boundry case
         // empty case w @ and w/o . - boundry case
+        assertFalse( BankAccount.isEmailValid("email@mail")) //Middle-right boundry case 
 
         // empty prefix w/o @ - boundry case
+        assertFalse( BankAccount.isEmailValid("mail")) //Left-middle and middle-right boundry case
 
         // empty top level domain w/o . - boundry case
+        assertFalse( BankAccount.isEmailValid("@email")) //empty left already checked, middle to right boundry
         // empty low level domain w/ . - boundry case
+        assertFalse( BankAccount.isEmailValid("email@.")) //middle to right boundry
         // empty domains w/ . - boundry case
+        assertFalse(BankAccount.isEmailValid(".")) //left to middle and middle to right boundry
 
     }
 
