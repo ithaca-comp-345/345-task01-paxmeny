@@ -24,13 +24,31 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
+        // valid case
+        assertTrue(BankAccount.isEmailValid("a@b.com"));
+        // empty case
         assertFalse( BankAccount.isEmailValid(""));
+        // empty prefix and low level domain w/o @
         assertFalse( BankAccount.isEmailValid(".com"));
+        // empty prefix w/ @ - boundry case
         assertFalse( BankAccount.isEmailValid("@s.com"));
+        // empty domains w/o .
         assertFalse( BankAccount.isEmailValid("a@"));
-        assertFalse( BankAccount.isEmailValid("name@email."))
-        assertFalse( BankAccount.isEmailValid("email.mail@com"))
+        // empty top level domain w/ . - boundry case
+        assertFalse( BankAccount.isEmailValid("name@email."));
+        // empty low level domain w/o . - boundry case
+        assertFalse( BankAccount.isEmailValid("email.mail@com"));
+
+        // empty case w/ @ and . - boundry case
+        // empty case w/o @ and w/ . - boundry case
+        // empty case w @ and w/o . - boundry case
+
+        // empty prefix w/o @ - boundry case
+
+        // empty top level domain w/o . - boundry case
+        // empty low level domain w/ . - boundry case
+        // empty domains w/ . - boundry case
+
     }
 
     @Test
