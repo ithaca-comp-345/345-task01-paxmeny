@@ -19,6 +19,8 @@ public class BankAccount {
     }
 
     public double getBalance(){
+        if (balance < 0){
+            throw new IllegalArgumentException("Balance is below 0"); }
         return balance;
     }
 
