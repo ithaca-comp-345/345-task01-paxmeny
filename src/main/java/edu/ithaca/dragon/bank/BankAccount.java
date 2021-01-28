@@ -66,11 +66,11 @@ public class BankAccount {
             for (char c2 : charSet.toCharArray()) {
                 String s = "" + c1 + c2;
                 if (str.contains(s)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -98,7 +98,9 @@ public class BankAccount {
 
         if (prefixIndex == -1 || domainIndex == -1) {  // if @ or . is missing return false
             return false;
-        } 
+        } else if (prefixIndex > domainIndex) {  // if the last . occurs before the @ return false
+            return false;
+        }
 
         String prefix, domain, topLevelDomain;
         prefix = email.substring(0, prefixIndex);
