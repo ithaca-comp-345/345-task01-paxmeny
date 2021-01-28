@@ -110,9 +110,9 @@ public class BankAccount {
             return false;
         } else if (special.contains("" + email.charAt(prefixIndex - 1))) {  // if prefix trailing special char return false
             return false;
-        } else if (special.contains("" + domain.charAt(0))) {  // if domain leading special char return false
+        } else if (domain.charAt(0) == '-') {  // if domain leading special char return false
             return false;
-        } else if (special.contains("" + email.charAt(domainIndex - 1))) {  // if domain trailing special char return false
+        } else if (email.charAt(domainIndex - 1) == '-') {  // if domain trailing special char return false
             return false;
         }
 
