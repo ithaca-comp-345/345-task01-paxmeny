@@ -56,14 +56,21 @@ public class BankAccount {
     }
 
     /**
-     * Returns true if str has consecutive c's, false otherwise
+     * Returns true if str has consecutive chars from charSet, false otherwise
      * @param str String to check for consecutive chars
      * @param c Char to check
-     * @return True if consecutive c's, false otherwise
+     * @return True if consecutive chars from charSet, false otherwise
      */
-    private static boolean hasConsecutive(String str, char c) {
-        String s = "" + c + c;
-        return str.contains(s);
+    private static boolean hasConsecutive(String str, String charSet) {
+        for (char c1 : charSet.toCharArray()) {
+            for (char c2 : charSet.toCharArray()) {
+                String s = "" + c1 + c2;
+                if (str.contains(s)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -114,14 +121,10 @@ public class BankAccount {
             return false;
         } else if (email.charAt(domainIndex - 1) == '-') {  // if domain trailing special char return false
             return false;
+        } else if (hasConsecutive(email, special)) {  // if email contains consecutive special chars return false
+            return false;
+        } else {
+            return true;
         }
-
-        // if consecutive special chars return false
-        for(char c : special.toCharArray()) {
-            if (hasConsecutive(email, c)) {
-                return false;
-            }
-        }
-        return true;
     }
 }
